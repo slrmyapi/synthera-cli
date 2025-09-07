@@ -50,7 +50,7 @@ go build
 
 #### Using Precompiled binary
 
-##### Linux / Mac / Android
+##### Linux / Mac
 
 ```bash
 wget https://github.com/slrmyapi/synthera-cli/releases/latest/download/synthera-$(uname -s)-$(uname -m) -O synthera
@@ -63,6 +63,16 @@ chmod +x synthera
 ```powershell
 wget https://github.com/slrmyapi/synthera-cli/releases/latest/download/synthera-windows-x86_64.exe -OutFile synthera.exe
 .\synthera.exe
+```
+
+##### Android (Termux)
+
+```bash
+apt update && apt upgrade -y
+apt install wget -y
+wget https://github.com/slrmyapi/synthera-cli/releases/latest/download/synthera-$(uname -s)-$(uname -m) -O synthera
+chmod +x synthera
+./synthera
 ```
 
 > **Note:** Always run `./synthera` (or `.\synthera.exe` on Windows) for consistency
