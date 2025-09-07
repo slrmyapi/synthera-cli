@@ -70,7 +70,7 @@ wget https://github.com/slrmyapi/synthera-cli/releases/latest/download/synthera-
 ```bash
 apt update && apt upgrade -y
 apt install wget -y
-wget https://github.com/slrmyapi/synthera-cli/releases/latest/download/synthera-$(uname -s)-$(uname -m) -O synthera
+wget https://github.com/slrmyapi/synthera-cli/releases/latest/download/synthera-android-$(uname -m) -O synthera
 chmod +x synthera
 ./synthera
 ```
