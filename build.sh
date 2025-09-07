@@ -34,5 +34,10 @@ do
     fi
 
     echo "Building $output ..."
-    GOOS=$GOOS GOARCH=$GOARCH go build -o "builds/$output"
+
+    if [ "$GOOS" = "android" ]; then
+        CGO_ENABLED=1 GODEBUG=netdns=cgo=1 go build -ldflags="-s -w" -o "builds/$output"
+    else
+        go build -ldflags="-s -w" -o "builds/$output"
+    fi
 done
