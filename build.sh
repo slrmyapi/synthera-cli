@@ -36,8 +36,8 @@ do
     echo "Building $output ..."
 
     if [ "$GOOS" = "android" ]; then
-        CGO_ENABLED=1 GODEBUG=netdns=cgo=1 go build -ldflags="-s -w" -o "builds/$output"
+        GOOS=$GOOS GOARCH=$GOARCH CGO_ENABLED=1 CC=/opt/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android21-clang go build -ldflags="-s -w" -o "builds/$output"
     else
-        go build -ldflags="-s -w" -o "builds/$output"
+        GOOS=$GOOS GOARCH=$GOARCH go build -ldflags="-s -w" -o "builds/$output"
     fi
 done
