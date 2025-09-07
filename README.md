@@ -48,6 +48,16 @@ go build
 ./synthera
 ```
 
+#### Using Precompiled binary
+
+##### Linux / Mac / Android
+
+```bash
+wget https://github.com/slrmyapi/synthera-cli/releases/latest/download/synthera-$(uname -s)-$(uname -m) -O synthera
+chmod +x synthera
+./synthera
+```
+
 ## Usage
 
 1. Run the CLI:
