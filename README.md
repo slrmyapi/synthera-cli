@@ -58,6 +58,15 @@ chmod +x synthera
 ./synthera
 ```
 
+##### Windows
+
+```powershell
+wget https://github.com/slrmyapi/synthera-cli/releases/latest/download/synthera-windows-x86_64.exe -OutFile synthera.exe
+.\synthera.exe
+```
+
+> **Note:** Always run `./synthera` (or `.\synthera.exe` on Windows) for consistency
+
 ## Usage
 
 1. Run the CLI:
