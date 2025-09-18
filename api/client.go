@@ -8,7 +8,6 @@ import (
 	"net/http"
 	"os"
 	"time"
-
 )
 
 var baseURL = os.Getenv("BASE_URL")
@@ -65,10 +64,10 @@ func (c *Client) makeRequest(method, endpoint string, requestBody, response any)
 	return nil
 }
 
-
-func (c *Client) TraceName(name string) ([]TraceNameItem, error) {
+func (c *Client) TraceName(name string, page int) ([]TraceNameItem, error) {
 	req := TraceNameRequest{
 		Name: name,
+		Page: page,
 	}
 	var res TraceNameResponse
 	err := c.makeRequest("POST", "/trace/name", req, &res)
@@ -93,7 +92,7 @@ func (c *Client) TraceDetail(id int) ([]TraceDetailID, error) {
 
 func (c *Client) TraceRelations(id int, offset int) ([]TraceDetailID, TraceRelationsItem, error) {
 	req := TraceRelationsRequest{
-		ID: id,
+		ID:     id,
 		Offset: offset,
 	}
 
@@ -104,4 +103,30 @@ func (c *Client) TraceRelations(id int, offset int) ([]TraceDetailID, TraceRelat
 	}
 
 	return res.Data, res.Relationships, nil
+}
+
+func (c *Client) TraceNRIC(nric string) ([]TraceDetailID, error) {
+	req := TraceNRICRequest{
+		NRIC: nric,
+	}
+	var res TraceNRICResponse
+	err := c.makeRequest("POST", "/trace/nric", req, &res)
+	if err != nil {
+		return nil, err
+	}
+
+	fmt.Println(res.Data)
+	return res.Data, nil
+}
+
+func (c *Client) History(page int) ([]HistoryItem, error) {
+	req := HistoryRequest{
+		Page: page,
+	}
+	var res HistoryResponse
+	err := c.makeRequest("POST", "/history", req, &res)
+	if err != nil {
+		return nil, err
+	}
+	return res.Data, nil
 }
