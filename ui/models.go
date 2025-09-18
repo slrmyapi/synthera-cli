@@ -77,7 +77,7 @@ func InitialModel(initialToken string, logo string) MainModel {
 		},
 		menuItem{
 			Name:  "Replace Token",
-			Desc:  "Replace your old token to a new one",
+			Desc:  "Replace your old token with a new one",
 			State: StateTokenInput,
 		},
 	}
@@ -203,9 +203,11 @@ func (m MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		case StateHistory:
 			switch msg.String() {
 			case "n", "N":
+				m.State = StateLoading
 				m.Page += 1
 				return m, m.FetchHistory()
 			case "p", "P":
+				m.State = StateLoading
 				m.Page -= 1
 				return m, m.FetchHistory()
 			case "m", "M":
